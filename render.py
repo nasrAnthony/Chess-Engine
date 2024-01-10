@@ -97,9 +97,13 @@ class Render:
     def show_moves(self, s):
         if(self.dragger.get_drag_flag()):
             #print(self.dragger.get_piece().get_valid_moves())
+            #draw in dicator on selected piece. 
+            piece_pos = self.dragger.get_piece().get_initial_pos()
+            pg.draw.rect(s, '#00FFFF', (piece_pos[0] *SQSIZE, piece_pos[1] *SQSIZE, SQSIZE, SQSIZE), width = 3)
             for move in self.dragger.get_piece().get_valid_moves():
                 rect = (move[1] *SQSIZE, move[0] *SQSIZE, SQSIZE, SQSIZE)
                 pg.draw.rect(s, '#FFBF4D', rect, width=3)
+            
             #print(self.dragger.get_piece().get_valid_moves(), self.dragger.get_check_flag())
             if self.dragger.get_check_flag()[0] == True:
                 pieces_causing_checks = self.dragger.get_check_flag()[2]
